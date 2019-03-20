@@ -14,7 +14,7 @@ window = as.numeric(args[9])
 step= as.numeric(args[10])
 genotype.file <- args[11]
 null.model <- args[12]
-results <- args[13]
+results.file <- args[13]
 
 
 # GLOBAL VARIABLES
@@ -300,6 +300,6 @@ runMainAnalysis = function(user_cores,in_nullmod,keepVars=NULL, keepGenes=NULL){
 #sort( sapply(ls(),function(x){object.size(get(x))})) 
 results = as.data.frame(runMainAnalysis(user_cores=user_cores,in_nullmod=nullmod),stringsAsFactors=F)
 
-out <- gzfile(results, "w")
+out <- gzfile(results.file, "w")
 write.csv(results, out, row.names=F)
 close(out)

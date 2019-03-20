@@ -13,13 +13,13 @@ task genesis_btest {
 
 	File genotype_file
 	File null_model
-	String results
+	String results_file
 
 	Int memory
 	Int disk
 
 	command {
-		R --vanilla --args ${default="NONE" agg_file} ${default="1" top_maf} ${default="Score" test_stat} ${test_type} ${default="5" min_mac} ${default="FALSE" weights} ${default="FALSE" weights_col} ${default="30" user_cores} ${default="0" window} ${default="0" step} ${genotype_file} ${null_model} ${results} < /genesis_dnanexus/genesis_btest.R
+		R --vanilla --args ${default="NONE" agg_file} ${default="1" top_maf} ${default="Score" test_stat} ${test_type} ${default="5" min_mac} ${default="FALSE" weights} ${default="FALSE" weights_col} ${default="30" user_cores} ${default="0" window} ${default="0" step} ${genotype_file} ${null_model} ${results_file} < /genesis_dnanexus/genesis_btest.R
 	}
 
 	runtime {
@@ -29,7 +29,7 @@ task genesis_btest {
 	}
 
 	output {
-		File result_file = "${results}"
+		File results = "${results_file}"
 	}
 }
 
@@ -48,7 +48,7 @@ workflow genesis_btest_wf {
 
 	File this_genotype_file
 	File this_null_model
-	String this_results
+	String this_results_file
 
 	Int this_memory
 	Int this_disk
@@ -75,7 +75,7 @@ workflow genesis_btest_wf {
 		this_step: "name: step, help: For use with 'window', indicates sliding window step size, in bp, class: int, optional: true, default: 0"
 		this_genotype_file: "name: genotypefile, class: file, patterns: [*.gds, *.GDS], optional: false"
 		this_null_model: "name: null_model, class: file, patterns: [*.Rda, *.Rdata], optional: false"
-		this_results: "name: outputfilename, label: prefix for output file name, no spaces, class: string, optional: false"
+		this_results_file: "name: outputfilename, label: prefix for output file name, no spaces, class: string, optional: false"
 		this_memory: "help: memory desired for computation in GB, class: int, optional: false"
 		this_disk: "help: disk space desired for computation in GB, class:int, optional: false"
 	}
@@ -95,7 +95,7 @@ workflow genesis_btest_wf {
 			step = this_step,
 			genotype_file = this_genotype_file,
 			null_model = this_null_model,
-			results = this_results,
+			results_file = this_results_file,
 			memory = this_memory,
 			disk = this_disk
 

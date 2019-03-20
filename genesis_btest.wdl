@@ -37,7 +37,7 @@ workflow genesis_btest_wf {
 	File? this_agg_file
 	Float? this_top_maf
 	String? this_test_stat
-	String test_type
+	String this_test_type
 
 	Int? this_min_mac
 	String? this_weights

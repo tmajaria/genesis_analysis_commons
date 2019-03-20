@@ -7,7 +7,7 @@
   "genesis_btest_wf.this_memory": 5,
   "genesis_btest_wf.this_null_model": "inputs/1KG_phase3_subset_null.RDa",
   "genesis_btest_wf.this_test_stat": "Score",
-  "genesis_btest_wf.this_test_type": "Dichotomous",
+  "genesis_btest_wf.this_test_type": "Single",
   "genesis_btest_wf.this_results": "1KG_phase3_subset.csv"
 }
 

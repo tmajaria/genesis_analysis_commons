@@ -4,7 +4,7 @@ task genesis_nullmodel {
 	String? covariates_string
 	File pheno_file
 	File? genotype_file
-	File results_file
+	String results_file
 	File? kinship_matrix
 	String? pheno_id
 	String? test_stat
@@ -15,7 +15,7 @@ task genesis_nullmodel {
 	Int disk
 
 	command {
-		R --vanilla --args ${outcome_name} ${default="Continuous" outcome_type} ${default="" covariates_string} ${pheno_file} ${default="" genotype_file} ${results_file} ${default="NO_KINSHIP_FILE" kinship_matrix} ${default="ID" pheno_id} ${default="Score" test_stat} ${default="NA" conditional} ${default="NA" het_varsIn} < /genesis_dnanexus/genesis_nullmodel.R
+		R --vanilla --args ${outcome_name} ${default="Continuous" outcome_type} ${default="" covariates_string} ${pheno_file} ${default="NA" genotype_file} ${results_file} ${default="NO_KINSHIP_FILE" kinship_matrix} ${default="ID" pheno_id} ${default="Score" test_stat} ${default="NA" conditional} ${default="NA" het_varsIn} < /genesis_dnanexus/genesis_nullmodel.R
 	}
 
 	runtime {
@@ -35,7 +35,7 @@ workflow genesis_nullmodel_wf {
 	String? this_covariates_string
 	File this_pheno_file
 	File? this_genotype_file
-	File this_results_file
+	String this_results_file
 	File? this_kinship_matrix
 	String? this_pheno_id
 	String? this_test_stat
@@ -59,7 +59,7 @@ workflow genesis_nullmodel_wf {
 		this_outcome_type: "name: outcome_type, label: Continuous or Dichotomous, class: string, optional: true, default: Continuous"
 		this_covariates_string: "name: covariate_list, label: Covariates, help: Comma separated list that match column names in the phenotype file. Leave blank for no adjustments, class: string, optional: true, default: ''"
 		this_pheno_file: "name: phenofile, class: file, patterns: [*.csv], optional: false"
-		this_genotype_file: "name: genotypefile, label: Genotypes, help: Use for providing genotypes for conditional analyses, class: file, optional: true"
+		this_genotype_file: "name: genotypefile, label: Genotypes, help: Use for providing genotypes for conditional analyses, class: file, optional: true, default: NA"
 		this_results_file: "name: outputfilename, label: prefix for output file name, no spaces, class: string, optional: false"
 		this_kinship_matrix: "name: kinshipmatrix, label: kinship matrix with sample ids as the row and column names.  Matricies saved as Rda will load faster, but csv is accepted as well. Rda files should contain a single numeric matrix object., class: file,patterns: [*.Rda, *.csv], optional: true"
 		this_pheno_id: "name: pheno_id, help: Column name that contains the sample IDs.  These IDs should match the genotype file IDs and the kinship file IDs., class: string, default: ID"

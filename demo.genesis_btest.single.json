@@ -8,6 +8,6 @@
   "genesis_btest_wf.this_null_model": "inputs/1KG_phase3_subset.Rda",
   "genesis_btest_wf.this_test_stat": "Score",
   "genesis_btest_wf.this_test_type": "Single",
-  "genesis_btest_wf.this_results": "1KG_phase3_subset.csv"
+  "genesis_btest_wf.this_results_file": "1KG_phase3_subset.csv"
 }
 

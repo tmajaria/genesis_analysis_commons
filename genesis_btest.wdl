@@ -23,7 +23,7 @@ task genesis_btest {
 	}
 
 	runtime {
-		docker: "topmed-dcc/genesis_dnanexus:latest"
+		docker: "tmajarian/genesis_dnanexus:v0.1"
 		disks: "local-disk ${disk} SSD"
 		memory: "${memory} GB"
 	}

@@ -86,4 +86,8 @@ workflow genesis_nullmodel_wf {
 			memory = this_memory,
 			disk = this_disk
 	}
+
+	output {
+        File null_model = genesis_nullmodel.results
+    }
 }

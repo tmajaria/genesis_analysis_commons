@@ -4,7 +4,7 @@ args<-commandArgs(TRUE)
 agg.file <- args[1] 
 top.maf <- as.numeric(args[2]) 
 test.stat <-  args[3] # Score, Wald, Firth
-test.type  <-  args[4] # Burden, Single, SKAT
+test.type  <-  args[4] # Burden, Single, SKAT, SMMAT
 
 min.mac <- as.integer(args[5])
 weights <- args[6]

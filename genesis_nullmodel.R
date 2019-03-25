@@ -2,7 +2,7 @@
 args<-commandArgs(TRUE)
 #===mandatory parameters
 outcome.name <- args[1]
-outcome.type <-  args[2]
+outcome.type <-  args[2] # Continuous or Dichotomous
 covariate.string <- args[3]
 pheno.file <- args[4]
 genotype.file <- args[5]
@@ -15,7 +15,7 @@ pheno.id <- args[8]
 
 # added these to JSON
 test.stat <-  args[9] # Score, Wald, Firth
-conditional <- args[10]
+conditional <- args[10] # 1:237733935:G:A
 het_varsIn <-  args[11]
 
 

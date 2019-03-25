@@ -1,0 +1,10 @@
+{
+  "genesis_nullmodel_wf.this_test_stat": "Score",
+  "genesis_nullmodel_wf.this_outcome_name": "t2d",
+  "genesis_nullmodel_wf.this_disk": 20,
+  "genesis_nullmodel_wf.this_pheno_file": "inputs/1KG_phase3_subset.phenotypes.csv",
+  "genesis_nullmodel_wf.this_results_file": "1KG_phase3_subset.score.cont.nokin.nocovar.Rda",
+  "genesis_nullmodel_wf.this_outcome_type": "Continuous",
+  "genesis_nullmodel_wf.this_pheno_id": "sample_id",
+  "genesis_nullmodel_wf.this_memory": 10
+}

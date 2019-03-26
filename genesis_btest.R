@@ -3,7 +3,7 @@ args<-commandArgs(TRUE)
 
 agg.file <- args[1] 
 top.maf <- as.numeric(args[2]) 
-test.stat <-  args[3] # Score, Wald, Firth
+test.stat <-  args[3] # Score, Wald
 test.type  <-  args[4] # Burden, Single, SKAT, SMMAT
 
 min.mac <- as.integer(args[5])
@@ -63,6 +63,10 @@ if(!test.type %in% collapsing.tests){
 	print("Selected Sliding Window Test")
 	SW_T = T
 	if(USE_AGG) FILTER = T
+	if(step <= 0){
+		step <- ceiling(window/2.0)
+		print("Warning: Sliding Window Test selected with step size of 0, resetting step size to 1/2 window size.")
+	}
 }else{
 
 	print("Selected Aggregate File-defined Test")

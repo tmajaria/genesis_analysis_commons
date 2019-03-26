@@ -100,4 +100,8 @@ workflow genesis_btest_wf {
 			disk = this_disk
 
 	}
+
+	output {
+        File result = genesis_btest.results
+    }
 }

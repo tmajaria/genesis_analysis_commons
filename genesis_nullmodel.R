@@ -79,7 +79,8 @@ suppressMessages(library(data.table))
 # source("/home/dnanexus/pipelineFunctions.R")
 source("/genesis_dnanexus/pipelineFunctions.R")
 sessionInfo()
-covariates <- split.by.comma(covariate.string)  
+covariates <- split.by.comma(covariate.string)
+if (covariates == "NA") covariates <- NULL
 
 ## phenotype 
 phenotype.data <- read.csv(pheno.file, header=TRUE, as.is=TRUE)

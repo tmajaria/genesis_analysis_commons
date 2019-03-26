@@ -219,6 +219,8 @@ if(kinship.matrix != 'NO_KINSHIP_FILE'){
     #AAif (!(identical(sample.ids,row.names(pheno)) && identical(row.names(kmatr),row.names(pheno)))){
     #AA    stop("Something is off problem with re-ordering")
     #AA}
+} else {
+  kmatr <- NULL
 }
 
 

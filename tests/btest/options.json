@@ -1,0 +1,5 @@
+{
+    "final_workflow_outputs_dir": "/Users/tmajaria/Documents/projects/public_workflows/genesis_dnanexus/tests/btest/output_files/",
+    "final_workflow_log_dir": "/Users/tmajaria/Documents/projects/public_workflows/genesis_dnanexus/tests/btest/workflow_logs/",
+    "final_call_logs_dir": "/Users/tmajaria/Documents/projects/public_workflows/genesis_dnanexus/tests/btest/call_logs/"
+}

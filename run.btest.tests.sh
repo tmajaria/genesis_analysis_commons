@@ -1,11 +1,12 @@
 #!/bin/sh
 
 btestdir="tests/btest/"
+optfile="tests/btest/options.json"
 
-btests=`ls -d ${btestdir}*`
+btests=`ls -d ${btestdir}btest*.json`
 
 for bt in $btests
 do
     echo $bt
-    runwdl genesis_btest.wdl $bt
+    java -jar /Users/tmajaria/Documents/projects/src/cromwell-36.jar run genesis_btest.wdl -i $bt -o $optfile
 done

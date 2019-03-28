@@ -80,7 +80,7 @@ suppressMessages(library(data.table))
 source("/genesis_dnanexus/pipelineFunctions.R")
 sessionInfo()
 
-if (covariates == "NA") {
+if (covariate.string == "NA") {
   covariates <- NULL
 } else {
   covariates <- split.by.comma(covariate.string)    

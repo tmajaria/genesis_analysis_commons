@@ -46,7 +46,7 @@ workflow genesis_btest_wf {
 	Float? this_window
 	Float? this_step
 
-	File this_genotype_file
+	Array[File] these_genotype_files
 	File this_null_model
 	String this_results_file
 
@@ -73,35 +73,36 @@ workflow genesis_btest_wf {
 		this_user_cores: "name: user_cores, class: int, optional: false, default: 30"
 		this_window: "name: window, help: Runs a sliding window test based on this window size, in bp, class: int, optional: true, default: 0"
 		this_step: "name: step, help: For use with 'window', indicates sliding window step size, in bp, class: int, optional: true, default: 0"
-		this_genotype_file: "name: genotypefile, class: file, patterns: [*.gds, *.GDS], optional: false"
+		these_genotype_files: "name: genotypefile, class: array[file], patterns: [*.gds, *.GDS], optional: false"
 		this_null_model: "name: null_model, class: file, patterns: [*.Rda, *.Rdata], optional: false"
 		this_results_file: "name: outputfilename, label: prefix for output file name, no spaces, class: string, optional: false"
 		this_memory: "help: memory desired for computation in GB, class: int, optional: false"
 		this_disk: "help: disk space desired for computation in GB, class:int, optional: false"
 	}
 
+	scatter(this_genotype_file in these_genotype_files) {
+		call genesis_btest {
+			input:
+				agg_file = this_agg_file,
+				top_maf = this_top_maf,
+				test_stat = this_test_stat,
+				test_type = this_test_type,
+				min_mac = this_min_mac,
+				weights = this_weights,
+				weights_col = this_weights_col,
+				user_cores = this_user_cores,
+				window = this_window,
+				step = this_step,
+				genotype_file = this_genotype_file,
+				null_model = this_null_model,
+				results_file = this_results_file,
+				memory = this_memory,
+				disk = this_disk
 
-	call genesis_btest {
-		input:
-			agg_file = this_agg_file,
-			top_maf = this_top_maf,
-			test_stat = this_test_stat,
-			test_type = this_test_type,
-			min_mac = this_min_mac,
-			weights = this_weights,
-			weights_col = this_weights_col,
-			user_cores = this_user_cores,
-			window = this_window,
-			step = this_step,
-			genotype_file = this_genotype_file,
-			null_model = this_null_model,
-			results_file = this_results_file,
-			memory = this_memory,
-			disk = this_disk
-
+		}
 	}
 
 	output {
-        File result = genesis_btest.results
+        Array[File] result = genesis_btest.results
     }
 }

@@ -29,7 +29,7 @@ task genesis_btest {
 	}
 
 	output {
-		File results = select_first(glob("${results_file}*"))
+		File results = select_first(glob("*.gz"))
 	}
 }
 

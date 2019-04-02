@@ -1,4 +1,4 @@
-task genesis_btest {
+task genesis_tests {
 	File? agg_file
 	Float? top_maf
 	String? test_stat
@@ -19,7 +19,7 @@ task genesis_btest {
 	Int disk
 
 	command {
-		R --vanilla --args ${default="NONE" agg_file} ${default="1" top_maf} ${default="Score" test_stat} ${test_type} ${default="5" min_mac} ${default="FALSE" weights} ${default="FALSE" weights_col} ${default="30" user_cores} ${default="0" window} ${default="0" step} ${genotype_file} ${null_model} ${results_file} < /genesis_dnanexus/genesis_btest.R
+		R --vanilla --args ${default="NONE" agg_file} ${default="1" top_maf} ${default="Score" test_stat} ${test_type} ${default="5" min_mac} ${default="FALSE" weights} ${default="FALSE" weights_col} ${default="30" user_cores} ${default="0" window} ${default="0" step} ${genotype_file} ${null_model} ${results_file} < /genesis_dnanexus/genesis_tests.R
 	}
 
 	runtime {
@@ -33,7 +33,7 @@ task genesis_btest {
 	}
 }
 
-workflow genesis_btest_wf {
+workflow genesis_tests_wf {
 	File? this_agg_file
 	Float? this_top_maf
 	String? this_test_stat
@@ -81,7 +81,7 @@ workflow genesis_btest_wf {
 	}
 
 	scatter(this_genotype_file in these_genotype_files) {
-		call genesis_btest {
+		call genesis_tests {
 			input:
 				agg_file = this_agg_file,
 				top_maf = this_top_maf,
@@ -103,6 +103,6 @@ workflow genesis_btest_wf {
 	}
 
 	output {
-        Array[File] result = genesis_btest.results
+        Array[File] result = genesis_tests.results
     }
 }

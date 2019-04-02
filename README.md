@@ -6,7 +6,7 @@ Version: (x.x)
 Runs single variant and aggregate test for genetic data. Implements Single-variant, Burden, SKAT and SKAT-O tests for Continuous or Dichotomous outcomes. All tests account for familial relatedness through kinship matrices. Underlying functions adapted from: Conomos MP and Thornton T (2016). GENESIS: GENetic EStimation and Inference in Structured samples (GENESIS): Statistical methods for analyzing genetic data from samples with population structure and/or relatedness. R package version 2.5+. http://bioconductor.org/packages/devel/bioc/html/GENESIS.html https://github.com/smgogarten/GENESIS
 
 ### What do these apps do?
-Runs phenotype-genotype association analyses on sequence data.  The workflow genesis_nullmodel will run the null model.  This is fitting your model with your outcome, adjustments and kinship matrix, but does not use the genotypes.  The second workflow genesis_btest takes the null model object from the first step and runs your association analysis.  The same null model can be used for single-variant or aggregate tests.
+Runs phenotype-genotype association analyses on sequence data.  The workflow genesis_nullmodel will run the null model.  This is fitting your model with your outcome, adjustments and kinship matrix, but does not use the genotypes.  The second workflow genesis_tests takes the null model object from the first step and runs your association analysis.  The same null model can be used for single-variant or aggregate tests.
 
 ### What are typical use cases for this app?
 This workflow can sun single-variant, SKAT and burden tests. It will account for relatedness using a kinship matrix and implements GMMAT for logistic regression.
@@ -15,7 +15,7 @@ This workflow can sun single-variant, SKAT and burden tests. It will account for
 This workflow requires genotype files in GDS format (\*.gds) and a phenotype file. Rare variant tests require a gene-aggregation file and an annotation file.
 
 ### What does this app output?
-Genesis_null model will output a copy of your null model as an R object.  The results of the genesis_btest workflow will be a compressed CSV file of association results
+Genesis_null model will output a copy of your null model as an R object.  The results of the genesis_tests workflow will be a compressed CSV file of association results
 
 ### How does this app work?
 This workflow uses the GENESIS package developed by Matt Conomos, Tim Thornton and Stephanie Gogarten (TOPmed DCC). This workflow has been optimized to allow genotype random access from the GDS genotype format files and to parallelize over a number of cores.
@@ -39,7 +39,7 @@ This workflow uses the GENESIS package developed by Matt Conomos, Tim Thornton a
 - **this_memory**: [int] memory in GB  
   
 
-## genesis_btest
+## genesis_tests
 
 - **this_agg_file**: [file] Variant aggregation file CSV file listing whichdn variants should be grouped together for aggregate tests (e.g. SKAT). The file contains 'group_id' ( window, gene etc.), 'chr' ('1' or 'chr1'), 'pos', 'ref' and 'alt'.  
 - **this_top_maf**: [float] Max MAF Maximim minor allele frequency ( generally used for aggregate tests )  
